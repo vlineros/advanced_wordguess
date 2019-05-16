@@ -1,24 +1,24 @@
 const Letter = require("./letter");
 function Word(word) {
+  this.word = word;
   this.wordArr = [];
   let arr = word.split("");
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     let newLetter = new Letter(arr[i]);
     this.wordArr.push(newLetter);
   }
   this.printWord = function() {
-    let printArr = [];
-    for (let i = 0; i < wordArr.length; i++) {
-      let newLetter = wordArr[i].printLetter();
+    var printArr = [];
+    for (let i = 0; i < this.wordArr.length; i++) {
+      let newLetter = this.wordArr[i].printLetter();
       printArr.push(newLetter);
     }
-    return printArr.join("");
+    return printArr.join(" ");
   };
   this.checkLetters = function(letter) {
-    for (let i = 0; i < wordArr.length; i++) {
-      wordArr[i].checkGuess();
+    for (let i = 0; i < this.wordArr.length; i++) {
+      this.wordArr[i].checkGuess(letter);
     }
   };
 }
-var word = new Word("blueberry");
-console.log(word.wordArr);
+module.exports = Word;
